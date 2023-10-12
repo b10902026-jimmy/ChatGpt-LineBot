@@ -53,7 +53,13 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text="感謝您的使用，若需要我的服務，請跟我說 「啟動」 謝謝~"))
         return
-    
+
+    if event.message.text == "你是誰":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="我是施鈞譯 Jimmy 架設的 Line 機器人，使用 ChatGPT3.5 作為語言模型。"))
+        return
+
     if working_status:
         chatgpt.add_msg(f"Human:{event.message.text}?\n")
         reply_msg = chatgpt.get_response().replace("AI:", "", 1)
